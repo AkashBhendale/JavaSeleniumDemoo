@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class TestExe extends DriverSetUp{
     @Test
     @Parameters({"userName", "passWord"})
-    public void LogInTest(String uName , String pWord){
+    public void LogInT1est(String uName , String pWord){
         LoginPage login = new LoginPage(driver);
         login.loginPageMethod(uName , pWord);
     }

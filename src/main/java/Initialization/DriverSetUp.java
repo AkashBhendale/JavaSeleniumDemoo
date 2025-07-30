@@ -8,7 +8,7 @@ import org.testng.annotations.Parameters;
 
 import java.net.URL;
 
-public class DriverSetUp {
+public class 1DriverSetUp {
 
     public static WebDriver driver;
 
