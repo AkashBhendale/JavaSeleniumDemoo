@@ -7,8 +7,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
 import java.net.URL;
+import java.util.Random;
 
-public class 1DriverSetUp {
+public class DriverSetUp {
 
     public static WebDriver driver;
 
@@ -23,4 +24,6 @@ public class 1DriverSetUp {
     public void driverClose(){
         driver.close();
     }
+
+
 }

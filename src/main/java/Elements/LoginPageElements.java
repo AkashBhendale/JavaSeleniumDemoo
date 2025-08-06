@@ -14,5 +14,5 @@ public class LoginPageElements {
 
     //Login Button
     @FindBy(xpath ="(//div[@class='oxd-form-row'])[2]/following-sibling::div/button")
-    public WebElement LoginButton1;
+    public WebElement LoginButton;
 }
