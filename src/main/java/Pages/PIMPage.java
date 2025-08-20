@@ -1,72 +1,98 @@
 package Pages;
 
 import Elements.PIMPageElement;
+import Initialization.DriverSetUp;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Random;
 
 public class PIMPage extends PIMPageElement {
     WebDriver driver;
-    public PIMPage(WebDriver driver){
+
+    public PIMPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    
-public void PIMPageMethod() throws InterruptedException {
-    //CLick on PIM
-    WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(10));
-    wait.until(ExpectedConditions.visibilityOf((PIMButton)));
+
+    public static String firstname;
+    public static String middlename;
+    public static String lastname;
+    public static int employeeIdNumber;
+
+    public void PIMPageMethod() throws InterruptedException {
+        //CLick on PIM
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf((PIMButton)));
 //    Thread.sleep(5000);
-    PIMButton.click();
+        PIMButton.click();
 
-    //Click on Add button
-    wait.until(ExpectedConditions.visibilityOf((AddButton)));
-    AddButton.click();
+        //Click on Add button
+        wait.until(ExpectedConditions.visibilityOf((AddButton)));
+        AddButton.click();
 
-    //FirstName
-    wait.until(ExpectedConditions.visibilityOf((firstName)));
-    Random random1 = new Random();
-    String name = random1.toString();
-    firstName.sendKeys(name);
+        wait.until(ExpectedConditions.visibilityOf((firstName)));
+        DriverSetUp driverSetUp = new DriverSetUp();
 
-    //MiddleName
-    middleName.sendKeys(name);
+        //FirstName
+        firstname = driverSetUp.randomString();
+        firstName.sendKeys(firstname);
+        System.out.println("First name: " + firstname);
 
-    //LastName
-    lastName.sendKeys(name);
 
-    //EmployeeID
-    employeeID.sendKeys("R001");
+        //MiddleName
+        middlename = driverSetUp.randomString();
+        middleName.sendKeys(middlename);
+        System.out.println("Middle name: " + middlename);
 
-    //Click on Torrle button
-    TurnOn.click();
+        //LastName
+        lastname = driverSetUp.randomString();
+        lastName.sendKeys(lastname);
+        System.out.println("Last name: " + lastname);
 
-    //Add Username
-    wait.until(ExpectedConditions.visibilityOfAllElements(userName));
-    Random random = new Random();
-    int randomNumber = random.nextInt(1000);
-    String user = "user" + randomNumber;
+        //EmployeeID
+        employeeIdNumber = driverSetUp.randomNumber();
+        employeeID.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+        employeeID.sendKeys(String.valueOf(employeeIdNumber));
+        System.out.println("Employee ID: " + employeeIdNumber);
 
-    userName.sendKeys(user);
+//    //Upload user photo
+        String filePath = "C:\\Users\\bhendalea\\Downloads\\Google.jpg";
+        uploadPic.sendKeys(filePath);
 
-    //Add Password
-    String pass = "pass@" + randomNumber;
-    passWord.sendKeys(pass);
+//    Click on Torrle button
+        TurnOn.click();
 
-    //Confirm Password
-    confPass.sendKeys(pass);
+        //Add Username
+        wait.until(ExpectedConditions.visibilityOfAllElements(userName));
+        Random random = new Random();
+        String user = "Test" + driverSetUp.randomNumber();
 
-    //Click on Save button
-    saveButton.click();
+        userName.sendKeys(user);
 
-    //Message
-    wait.until(ExpectedConditions.visibilityOf(successMessage));
-    System.out.println("User has been created: " + successMessage.getText());
+        //Add Password
+        String pass = "pass@" + driverSetUp.randomNumber();
+        passWord.sendKeys(pass);
 
-}
+        //Confirm Password
+        confPass.sendKeys(pass);
+
+        //Click on Save button
+        saveButton.click();
+
+        //Message
+        wait.until(ExpectedConditions.visibilityOf(successMessage));
+        Assert.assertTrue(successMessage.isDisplayed(), "Employee was not added successfully.");
+        System.out.println("User has been created: " + successMessage.getText());
+
+
+    }
 
 }

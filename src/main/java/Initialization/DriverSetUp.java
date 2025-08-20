@@ -6,7 +6,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
-import java.net.URL;
 import java.util.Random;
 
 public class DriverSetUp {
@@ -15,15 +14,24 @@ public class DriverSetUp {
 
     @BeforeClass
     @Parameters("URL")
-    public void driverInitialize(String appURL){
+    public void driverInitialize(String appURL) {
         driver = new ChromeDriver();
         driver.get(appURL);
         driver.manage().window().maximize();
     }
+
     @AfterClass
-    public void driverClose(){
+    public void driverClose() {
         driver.close();
     }
 
+    public String randomString() {
+        Random random = new Random();
+        return random.toString();
+    }
 
+    public int randomNumber() {
+        Random random = new Random();
+        return random.nextInt(1000);
+    }
 }

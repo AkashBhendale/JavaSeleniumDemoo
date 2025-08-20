@@ -20,8 +20,11 @@ public class PIMPageElement {
     @FindBy(xpath = "//input[@name='lastName']")
     public WebElement lastName;
 
-    @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[2]")
+    @FindBy(xpath = "//label[text()='Employee Id']//parent::div/following-sibling::*[1]//input")
     public WebElement employeeID;
+
+    @FindBy(xpath = "//input[@type='file']")
+    public WebElement uploadPic;
 
     @FindBy(xpath = "//p[text()='Create Login Details']/following-sibling::div/label")
     public  WebElement TurnOn;
@@ -40,6 +43,5 @@ public class PIMPageElement {
 
     @FindBy(xpath = "//*[@id='oxd-toaster_1']/div")
     public WebElement successMessage;
-
 
 }

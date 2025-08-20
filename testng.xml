@@ -6,7 +6,12 @@
         <parameter name="userName" value="Admin"></parameter>
         <parameter name="passWord" value="admin123"></parameter>
         <classes>
-            <class name="Execution.TestExe"></class>
+            <class name="Execution.TestExe">
+<!--                <methods>-->
+<!--&lt;!&ndash;                    <exclude name="EmployeeList"></exclude>&ndash;&gt;-->
+<!--                    <exclude name="verifyDashboardAndLogoutMethod"></exclude>-->
+<!--                </methods>-->
+            </class>
         </classes>
     </test>
 </suite>
