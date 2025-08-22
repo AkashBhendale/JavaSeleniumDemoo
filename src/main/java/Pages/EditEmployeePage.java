@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static Pages.PIMPage.*;
+
 
 public class EditEmployeePage extends EditEmployeeElements {
     WebDriver driver;
@@ -24,7 +24,7 @@ public class EditEmployeePage extends EditEmployeeElements {
     public static String updateMiddlename;
     public static String updateLastname;
 
-    public void editemployeeMethod(String employName) throws InterruptedException {
+    public void editemployeeMethod(String employName) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         List<WebElement> employeeRows = employeeRow;
